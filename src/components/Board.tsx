@@ -19,7 +19,7 @@ const Board: React.FC<BoardProps> = ({ board, selectedPiece, onPieceSelect, onPi
 
   const move = useCallback((position: Position) => {
     onPieceMove(selectedPiece!, position);
-  }, [onPieceMove, selectedPiece]);
+  }, [selectedPiece, onPieceMove]);
 
   return (
     <div className={"board"}>
@@ -42,12 +42,13 @@ const Board: React.FC<BoardProps> = ({ board, selectedPiece, onPieceSelect, onPi
       <div className={"board__desk"}>
         {board.cells.map((cell) => {
           const piece = board.get(cell);
+          const available = availableMoves.find(move => move.code === cell.code) != null;
           return (
             <Cell
               key={cell.code}
               position={cell}
               selected={selectedPiece === piece}
-              available={!!availableMoves.find(move => move.code === cell.code)}
+              available={available}
               onClick={move}
             >
               {piece && <Piece piece={piece} onSelect={onPieceSelect} />}

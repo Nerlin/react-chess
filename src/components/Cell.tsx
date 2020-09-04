@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import { observer } from "mobx-react";
 import React, { useCallback } from "react";
 import Position from "../game/Position";
 import "./Cell.sass";
@@ -7,12 +8,13 @@ export interface CellProps {
   position: Position;
   selected?: boolean;
   available?: boolean;
-  onClick(position: Position): void;
+  onClick?(position: Position): void;
+  children?: React.ReactNode;
 }
 
 const Cell: React.FC<CellProps> = ({ position, selected, available, children, onClick }) => {
   const handleClick = useCallback(() => {
-    if (available) {
+    if (available && onClick) {
       onClick(position);
     }
   }, [position, available, onClick]);
@@ -29,4 +31,4 @@ const Cell: React.FC<CellProps> = ({ position, selected, available, children, on
   );
 }
 
-export default Cell;
+export default observer(Cell);

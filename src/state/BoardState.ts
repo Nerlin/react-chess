@@ -11,6 +11,8 @@ import RookState from "./RookState";
 
 
 decorate(BoardState, {
+  width:  observable,
+  height: observable,
   board:  observable,
   cells:  computed,
   pieces: computed,
