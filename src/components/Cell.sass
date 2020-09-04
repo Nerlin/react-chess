@@ -1,0 +1,27 @@
+.cell
+  display: flex
+  justify-content: center
+  align-items: center
+  position: relative
+
+.cell_available
+  cursor: pointer
+  
+.cell_white
+  background-color: #e9ebd6
+
+.cell_black
+  background-color: #241611
+
+.cell_selected
+  border: 3px solid #4355f0
+
+.cell_available:after
+  content: " "
+  position: absolute
+  left: 0
+  top: 0
+  width: 100%
+  height: 100%
+  background: #4355f066
+  pointer-events: none
